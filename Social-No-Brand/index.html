@@ -10,6 +10,21 @@
     <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
 
     <style>
+      /* order inputs */
+
+      /*
+      {{show-crop}}
+      {{ placeholder-opacity }}
+      {{ placeholder-toggle-new }}
+      {{ placeholder-image-1 }}  
+      {{{ SCU_variation--sm }}}
+      {{{SCU_background-image--sm}}}
+      {{{ SCU_heading--sm }}}
+      {{{SCU_heading-size}}}
+      {{{ SCU_subheading--sm }}}
+      {{{SCU_subheading-size}}}
+      */
+      
       @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
 
       :root {
@@ -57,24 +72,10 @@
       .body {
         display: flex;
         position: relative;
-        flex: 2;
+        flex: 1;
       }
 
-      .instagram .body {
-        padding: 0px;
-      }
-
-      .facebook .body {
-        padding: 0px;
-      }
-
-      .position-a{
-        justify-content: flex-start;
-      }
-
-      .position-b {
-        justify-content: flex-end;
-      }
+      .position-a.body { flex-direction: row-reverse; }
 
       .background-image {
         z-index: 0;
@@ -82,43 +83,40 @@
       }
 
       .content {
+        position: relative;
+        padding: 1rem;
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        z-index : 1;
-        position: relative;
-        background-color: rgba(1, 94, 135, 0.8); 
+        flex: 1;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(1, 94, 135, 0.8);
         background-blend-mode: multiply;
       }
 
-      .instagram .content {
-        padding: 6rem 2rem 2rem 2rem;
-        height: 100%;
-        width: 100%;
-      }
+      .instagram .content { padding: 2rem; }
 
-      .facebook .content {
-        padding: 2rem;
-        height: 100%;
-        width: 100%;
-      }
+      .position-a .content { text-align: right; }
 
-      .position-a .content{
-        text-align: left;
-      }
-
-      .position-b .content{
+      .position-b .content {
         text-align: left;
         padding-right: 2rem;
       }
 
-      .facebook .position-b .content{
+      .facebook .position-b .content {
         text-align: left;
         padding-right: 32pt;
       }
 
       .heading {
-        font-weight: 500px;
+        font-weight: 500;
         margin-bottom: 16pt;
       }
 
@@ -134,7 +132,6 @@
         line-height: 1.22em;
         letter-spacing: 0.48pt;
       }
-
 
       .facebook .heading {
         font-size: 40.3pt;
@@ -154,7 +151,6 @@
         word-spacing: -0.5pt;
         margin-bottom: 4rem;
       }
-
 
       .facebook .subheading {
         font-size: 23.3pt;
@@ -199,10 +195,7 @@
         width: 330px;
         height: 330px;
         background-color: #f2f2f2;
-        z-index: 9999;
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
       }
 
       .outfit-resizable-background img {
@@ -224,16 +217,22 @@
 
         <div class="container fit {{{ SCU_variation--sm }}}">
 
-          <div class="body {{#text-box}}{{ text-box }}{{/text-box}}{{^text-box}}position-a{{/text-box}}">
-            <div class="background-image">
+         
+            <div class="backgroundImage">
+             
               <div class="reposition-fix"> 
                 {{{SCU_background-image--sm}}}
               </div>
             </div>
-            <div class="content">
-              <div class="logo-block">
+             <div class="overlay"></div>
+           <div class="body {{#text-box}}{{ text-box }}{{/text-box}}{{^text-box}}position-a{{/text-box}}">
+             <div class="logo-block">
                 <img src="https://files.outfit.io/media_library_items/171020/SCU_RGB_Vertical.png" />
               </div>
+            
+            
+            <div class="content">
+             
               <div class="heading" data-max-line="3">{{{ SCU_heading--sm }}}</div> <!--heading-->
               <div class="subheading" data-max-line="3">{{{ SCU_subheading--sm }}}</div> <!--subheading-->
             </div> <!--content-->

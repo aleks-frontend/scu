@@ -1,0 +1,426 @@
+<!DOCTYPE>
+<html async>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css" />
+  </head>
+  <style>
+    /****************/
+    /* RESET STYLES */
+    /****************/
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: 1em;
+      line-height: 16px;
+    }
+    * {
+      background: white;
+    }
+    token-value,
+    img {
+      background: none;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    body {
+      font-size: 16px;
+      font-family: "Graphik";
+    }
+    table, caption, tbody, tfoot, thead, tr, th, td {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: top;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    /*.outflo-bleed {
+    height: 100vh;
+    width: 100vw;
+    }*/
+    /********************/
+    /*  OVERFLOW STYLES */
+    /********************/
+    .overflow {
+      position: relative !important;
+      border: 1px dashed red;
+      color: red !important;
+    }
+    .overflow * { 
+      color: inherit !important; 
+    }
+    .overflow::before {
+      content: '+';
+      position: absolute;
+      z-index: 99999999;
+      top: 5px;
+      right: 5px;
+      height: 1.5em;
+      width: 1.5em;
+      min-width: 15px;
+      min-height: 15px;
+      border: 1px solid red;
+      font-size: 1em;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .overflow:hover:before {
+      background-color: red;
+      color: white; 
+    }
+    .overflow:after {
+      display: none; 
+    }
+    .overflow:hover:after {
+      display: block;
+      content: 'Number of lines exceeds total allowed';
+      position: absolute;
+      top: calc(1.5em + 5px);
+      right: 5px;
+      background-color: black;
+      color: white;
+      padding: 5px;
+      font-size: 1em;
+      font-weight: 400;
+      width: 15em;
+    }
+    .outflo-crop-marks img {
+      z-index: 1;
+    }
+    /*----------------*\
+    HEADER STYLES
+    \*----------------*/
+    header {
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 61px;
+      top: 64px;
+      width: 100%;
+      height: 89px;
+      background-image: url('{{{lockup-logo}}}');
+      background-repeat: no-repeat;
+    }
+    body[data-team="SCU International"][data-logo="international"] .logo {
+      background-image: url('logo-international.svg');
+    }
+    .ribbon {
+      position: absolute;
+      top: -2mm;
+      right: -2mm;
+      width: 135px;
+    }
+    .header__content {
+      color: {{{account.colors.primary}}};
+    }
+    .header__content h2 {
+      font-weight: 600;
+      margin: 0 0 0.3rem;
+    }
+    .header__content h3 {
+      font-weight: 400;
+    }
+    /*------------------*\
+    FOOTER STYLES
+    \*------------------*/
+    .footer__content {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      color: #231F20;
+      font-size: 0.9em;
+    }
+    .website {
+      text-decoration: none;
+      color: {{{account.colors.primary}}};
+      font-weight: 600;
+      display: block;
+      margin: 0 0 0.55rem;
+    }
+    .address__wrapper {
+      font-size: 0.65em;
+      margin: 0 0 0.5rem;
+    }
+    .phoneEmail__wrapper {
+      list-style: none;
+      font-size: 0.65em;
+    }
+    .phoneEmail__wrapper li,
+    .address__wrapper p,
+    .phoneEmail__wrapper {
+      margin: 0 0 0.3rem;
+    }
+    .phoneEmail__wrapper .blue {
+      font-weight: 600;
+      margin: 0 0.8rem 0 0;
+    }
+    .blue {
+      color: {{{account.colors.primary}}};
+    }
+    .cricos {
+      font-size: 0.7em;
+    }
+    /*--------------------*\
+    CONTENT STYLES
+    \*--------------------*/
+    /*.main-flow {
+    height: 100vh;
+    width: 100vw;
+    }*/
+    .text-block {
+      margin: 0 0 1rem;
+    }
+    .text-block > *:last-child,
+    ul li:last-child,
+    ol li:last-child {
+      margin: 0;
+    }
+    ul,
+    ol {
+      padding: 0 0 0 1rem;
+      margin: 0 0 0.5rem;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    .image-block {
+      margin: 0 auto 1rem;
+      break-inside: avoid;
+    }
+    table {
+      break-inside: avoid;
+      margin: 0 0 1rem;
+      width: 100%;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+    p,
+    li {
+      margin: 0.5rem 0;
+      line-height: 1.5em !important; /* Important to override the inline from region.css */
+    }
+    tr.table-header td {
+      font-size: 1.2em !important;
+      font-weight: 600;
+    }
+    tr {
+      border-bottom: 1px solid black;
+    }
+    td {
+      padding: 0.4rem 0.5rem 0.6rem;
+      line-height: 1.5em !important;
+    }
+    td * {
+      line-height: 1.5em !important;
+    }
+
+    /*-------------------------*\
+    BOOKLET TABLE STYLES
+    \*-------------------------*/
+    th, 
+    tr.table-header td,
+    tr.heading td{
+      font-weight: bold;
+    }
+
+    tr.table-header td {
+      font-size: 12pt;
+      line-height: 17pt;
+      padding: 6pt;
+      background: #C5CCD8;
+      color: #000;
+    }
+
+    {{{account.snippets.font}}}
+
+    h1 {
+    font-family: var(--headingFont);
+    font-weight: var(--headingWeight);
+    }
+  </style>
+  <body data-team="{{{team.name}}}" data-logo="">
+    <div class="main-flow" id="print-container">
+
+      {{#collection.copy-section}}
+
+      <!-- Text Blocks -->
+      {{#block.text-block}} <!-- {{{block-name}}} -->
+      <div class="text-block">
+        {{{text}}}
+      </div>
+      {{/block.text-block}}
+
+      <!-- Image Blocks -->
+      {{#block.image-block}} <!-- {{{block-name}}} -->
+      <div class="image-block">
+        <img src="{{{image}}}" alt="" />
+      </div>
+      {{/block.image-block}}
+
+      <!-- Table Blocks -->
+      {{#block.table-block}} <!-- {{{block-name}}} -->
+      <table>
+        <tbody>
+          {{#spreadsheet.table-rows}}
+          <tr class="{{{row-style}}}">
+            <td>{{col1}}</td>
+            <td>{{col2}}</td>
+          </tr>
+          {{/spreadsheet.table-rows}}
+        </tbody>
+      </table>
+      {{/block.table-block}}
+
+      {{/collection.copy-section}}
+
+    </div>
+    <script type="text/javascript" src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/outflo.0.1.1.min.js"></script>
+    <script>
+
+
+      var outflo = new OutFlo({
+        domID: 'print-container', // The id of the HTML element that contains the content to be printed
+        marginTop: 190, // Margin when printed (pixels), defaults to 0 if omitted
+        marginBottom: 38, // Margin when printed (pixels), defaults to 0 if omitted
+        marginLeft: 63, // Margin when printed (pixels), defaults to 0 if omitted
+        marginRight: 63, // Margin when printed (pixels), defaults to 0 if omitted,
+        showCrop: true, // Weather to show crop or, defaults to 0 if Digital PDF
+        bleedPadding: '6.7mm', // The padding for the bleed when turning on showCrop, defaults to 6.7mm
+        createHeaderTemplate: function(pageNumber) { // Optional, called every time a page is created, should return a DOM node
+          var header = document.createElement('header');
+          // Create and add the logo
+          var logo = document.createElement('div');
+          logo.classList.add("logo");
+          header.appendChild(logo);
+
+          // Create and add the Ribbon
+          var ribbon = document.createElement('img');
+          ribbon.src = "https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/30057edd57d2b5d3821d1c9c1fa01172/letterhead-ribbon.svg";
+          ribbon.classList.add("ribbon");
+          header.appendChild(ribbon);
+
+          // Create the Input Content
+          var header__content = document.createElement("div");
+          header__content.classList.add("header__content");
+          var author = document.createElement("h2");
+          author.classList.add("author");
+          author.classList.add("fit-text");
+          author.innerHTML = "{{{author-name}}}";
+
+          var position = document.createElement("h3");
+          position.classList.add("position");
+          position.classList.add("fit-text");
+          position.innerHTML = "{{{author-position}}}";
+          header__content.appendChild(author);
+          header__content.appendChild(position);
+          header.appendChild(header__content);
+          return header;
+        },
+        createFooterTemplate: function(pageNumber) { // Optional, called every time a page is created, should return a DOM node
+          var footer = document.createElement('footer');
+          // Create our content wrapper
+          var footer__content = document.createElement("div");
+          footer__content.classList.add("footer__content");
+
+          // Create Website URL
+          var website = document.createElement("a");
+          website.classList.add("website");
+          website.href = "www.scu.edu.au";
+          website.innerHTML = "www.scu.edu.au";
+
+          // Create Address Container
+          var address__wrapper = document.createElement("div");
+          address__wrapper.classList.add("address__wrapper");
+
+          // Create Address line 1
+          var addrLine1 = document.createElement("p");
+          addrLine1.innerHTML = "{{{team.address-line-1}}}";
+
+          // Create Address line 2
+          var addrLine2 = document.createElement("p");
+          addrLine2.innerHTML = "{{{team.address-line-2}}}";
+
+          // Create Phone and Email Wrapper
+          var phoneEmail__wrapper = document.createElement("ul");
+          phoneEmail__wrapper.classList.add("phoneEmail__wrapper");
+
+          // Create Phone T and Content
+          var phone = document.createElement("li");
+          phone.classList.add("phone");
+
+          var t = document.createElement("span");
+          t.classList.add("blue");
+          t.innerHTML = "T";
+
+          var phoneNum = document.createElement("span");
+          phoneNum.innerHTML = "{{{team.contactPhone}}}";
+
+          // Create Email E and Content
+          var email = document.createElement("li");
+          email.classList.add("email");
+
+          var e = document.createElement("span");
+          e.classList.add("blue");
+          e.innerHTML = "E";
+
+          var emailContent = document.createElement("span");
+          emailContent.innerHTML = "{{{team.contactEmail}}}";
+
+          // Create Cricos
+          var cricos = document.createElement("p");
+          cricos.classList.add("cricos");
+          cricos.innerHTML = "CRICOS Provider 01241G";
+
+
+          // Appending all the Children
+          footer.appendChild(footer__content);
+          footer__content.appendChild(website);
+          footer__content.appendChild(address__wrapper);
+          address__wrapper.appendChild(addrLine1);
+          address__wrapper.appendChild(addrLine2);
+          footer__content.appendChild(phoneEmail__wrapper);
+          phoneEmail__wrapper.appendChild(phone);
+          phone.appendChild(t);
+          phone.appendChild(phoneNum);
+          phoneEmail__wrapper.appendChild(email);
+          email.appendChild(e);
+          email.appendChild(emailContent);
+          footer__content.appendChild(cricos);
+
+          return footer;
+        },
+        before: function() { //Optional, runs before printing
+          // Do any necessary preparations for printing
+        },
+        after: function() { //Optional, runs after printing
+          // Clean up any preparations for printing
+          document.dispatchEvent(new Event('printready'));
+        }
+      });
+
+      window.addEventListener('load', function() {
+        outflo.pagify();
+      });
+    </script>
+  </body>
+</html>

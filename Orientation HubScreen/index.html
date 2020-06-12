@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      html {
+        font-family: "Graphik";
+        font-size: 11pt;
+        color: #000;
+        word-break: break-word;
+      } 
+
+      .tinymce_style--light {
+        color: #fff;
+      }
+
+      .tinymce_style--dark {
+        color: {{account.colors.yellow}};
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        padding: 45pt 87pt 45pt 95.7pt;
+        background: #005E86;       
+      }
+
+      .header {
+        display: flex;
+        padding-bottom: 46pt;
+      }
+
+      .header__main {
+        flex: 1;
+        padding: 10pt 0pt 0pt 0pt;
+        line-height: 0.965;    
+      }
+
+      .year {
+        padding-left: 5.5pt;
+        font-size: 116pt;
+        font-weight: 300;
+        color: rgb(0, 166, 182);
+      }
+
+      .heading {
+        padding-right: 50pt;
+        font-size: 149.4pt;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      .heading h1 {
+        font-weight: 600;
+        letter-spacing: -0.057em;
+        line-height: 0.95em;
+      } 
+
+      .header__side {
+        width: 245pt;
+        display: flex;
+        align-items: right;
+        justify-content: center;
+      }
+
+      .body { 
+        display: flex;
+        flex: 1;     
+        flex-direction: column;
+      }
+
+      .subheading {
+        font-size: 74.3pt;
+        letter-spacing: -1.9pt;
+      }
+
+      .subheading h2 {
+        margin-bottom: 16pt;
+        font-weight: 600;    
+      }
+
+      .information__row {
+        display: flex;
+      }
+
+      .information__row--secondary {
+        display: flex;
+        padding: 20pt 0 13pt;
+        border-bottom: 2pt solid #66c8d2;
+        background: #fff;
+      }
+      .information__row--secondary:last-child {
+        border-bottom: none;
+      }
+
+      .information__head {
+        padding-right: 35pt;
+        padding-left: 16.9pt;
+        font-size: 30pt;
+        letter-spacing: 0pt;
+        text-transform: uppercase;
+        font-weight: 300;
+        line-height: 1.65em;
+        color: #fff;
+        background: #000;       
+      }
+
+      .information__head--primary {
+        flex: 1;
+      }
+
+      .information__head--secondary {
+        width: 16%;
+      }
+
+      .information__heading h1 {
+        margin-bottom: 0.4em;
+        font-weight: 600;
+        line-height: 1.25em;
+        font-size: 30pt;    
+      }
+
+      .information__heading h2 {
+        margin-bottom: 0.4em;
+        font-weight: 700;
+        line-height: 1.25em;
+        font-size: 25pt;  
+      }
+
+      .information__heading h1:last-child,
+      .information__heading h2:last-child {
+        margin-bottom: 0;
+      }
+
+      .information__cal {
+        padding: 0 17pt;
+      }
+
+      .information__cal--primary{
+        flex: 1;
+      }
+
+      .information__cal--secondary {
+        width: 16%;
+        margin-bottom: 0.4em;
+        padding-right: 12pt;
+        font-size: 30pt;
+        font-weight: 500;     
+        line-height: 1.3em;     
+      }
+
+      .information__content {
+        font-size: 25pt;
+      }
+
+      .one-column {
+        column-count: 1;
+      }
+
+      .two-column {
+        column-count: 2;
+      }
+
+      .information__heading + .information__content {
+        margin-top: 13.5pt;
+      }
+
+      ul {
+        margin-bottom: 0.4em;
+        padding: 10pt 0 10pt 50pt;
+        padding: 0 0 0 50pt;
+        font-size: 22pt;    
+        list-style-type: disc;      
+      }
+
+      ul:last-child {
+        margin-bottom: 0;
+      }
+
+      li {
+        margin-bottom: 7pt;
+      }
+
+      li:last-child {
+        margin-bottom: 0;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .logo {
+        width: inherit;
+      }
+
+      {{{account.snippets.font}}}
+
+      h1{
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight) !important;
+        text-transform: none;
+      }
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit" data->
+
+          <div class="header {{SCU_show-hide-header--oh}} js-subtrahend">
+            <div class="header__main">
+              <div class="heading" >
+                <div class="heading--inner" data-max-line="2" style="font-size:{{SCU_headline-size--oh}}%;">
+                  {{{ SCU_headline--oh }}}
+                </div><!-- end heading--inner -->
+              </div><!-- end heading -->
+            </div><!-- end header__main -->
+            <div class="header__side">
+              <img class="logo" src="{{{account.logos.mono-reversed-stacked}}}" alt="Southern Cross University Logo">
+            </div><!-- end header__side -->
+          </div><!-- end header -->
+          <div class="body" data-max-height="dynamic">
+            <div class="subheading" data-max-height="170">{{{ SCU_subheading--oh }}}</div><!-- end subheading -->
+            <div class="information">
+              <div class="information__row">
+                <div class="information__head information__head--primary" data-max-line="1">{{{ SCU_column-1-heading--oh }}}</div><!-- end information__head -->
+                <div class="information__head information__head--secondary" data-max-line="1">{{{ SCU_column-2-heading--oh }}}</div><!-- end information__head -->
+              </div><!--information__row-->
+              {{#collection.SCU_sessions--oh}}           
+              <div class="information__row information__row--secondary">
+                <div class="information__cal information__cal--primary">
+                  {{#SCU_session-heading--oh}}
+                  <div class="information__heading" data-max-height="155">{{{ SCU_session-heading--oh }}}</div><!--information__heading-->{{/SCU_session-heading--oh}}
+                  {{#SCU_subjects--oh}} <div class="information__content {{{ SCU_subjects--column-toggle }}}">{{{ SCU_subjects--oh }}}</div><!--information__content-->{{/SCU_subjects--oh}}
+                </div><!--information__cell-->
+                <div class="information__cal information__cal--secondary" data-char-limit="7">{{{ SCU_time--oh }}}</div><!--information__cell-->
+              </div><!--information__row--secondary-->
+              {{/collection.SCU_sessions--oh}}
+            </div><!--information-->
+          </div><!-- end body -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>    
+    <script src="js/max-height-check.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck(); 
+          maxHeightCheck(); 
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });         
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck(); 
+        maxHeightCheck();         
+      });
+
+      placeholderController();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+    </script>
+
+
+  </body>
+</html>

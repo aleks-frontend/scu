@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;" data-sign="OSB">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">      
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/64a8d2329950e4c876f4477c5184156a/39abb0922fe21b5c527107ca8e451528.png');
+        opacity: 0.75;
+      }
+
+      .url::after {
+        content: '{{{ url }}}';
+      }
+
+      .inner {
+        justify-content: flex-start;
+      }
+
+      .content__master {
+        display: none;
+      }
+
+      .certificateType {
+        margin-bottom: 41pt;
+        font-size: 38pt;
+        line-height: 40pt;
+        font-weight: bold;
+        letter-spacing: -0.7pt;
+      }
+
+      .subheading {
+        font-size: 19pt;
+        line-height: 26pt;
+        letter-spacing: -0.4pt;
+        margin: 5pt 0 20pt;
+      }
+
+      .name {    
+        height: auto;
+      }
+
+      .name__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 70pt;
+        margin-bottom: 5pt;
+        font-size: 27pt;
+        line-height: 28pt;
+        font-weight: 700;
+        color: #000;      
+      }
+
+      .certifiaction {
+        margin-bottom: 33pt;
+      }
+
+      .textLine--3 {
+        margin-bottom: -3pt;
+        font-size: 19pt;
+        line-height: 26pt;
+        letter-spacing: -0.3pt;
+      }
+
+      .textLine--3 p {
+        margin-top: 0.05em;
+      }
+
+      .textLine--4 {
+        font-size: 11pt;
+        line-height: 12pt;
+        letter-spacing: -0.02em;
+        margin-bottom: 5pt;
+      }
+
+      .authorising__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }     
+
+      .authorising__container--inLine {
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0 50pt;
+      }
+
+      .authorising__container--below {
+        flex-direction: column-reverse;
+      }      
+
+      .authorising__container--forceAbove {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        align-items: center;
+      }            
+
+      .authorising__date p {
+        color: #000;
+      }
+
+      .copyright {
+        position: absolute;
+        bottom: 12pt;
+      }
+
+      .authorising {
+        justify-content: center;
+      }
+
+      .authorising__container--inLine .authorising {
+        justify-content: flex-start;
+      }
+
+      .authorising__container--forceAbove .authorising {
+        justify-content: space-between;
+      }      
+
+      .authorising--secondary {
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 0 46pt;
+      }
+
+      .authorising--default {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .authorising__container--below .authorising {
+        margin-bottom: 19pt;
+      }
+
+      .author {
+        width: 140pt;
+      }
+
+      .authorImage {
+        height: 75pt;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 5pt;
+      }
+
+      .authorImage__img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .role__line {
+        line-height: 1.2em;
+      }
+
+      [data-target="heading"] {
+        font-size: {{{ SCU_heading-size--ce }}}%;
+        line-height: 1.2em;
+      }
+
+      {{{account.snippets.font}}}
+
+      .certificateType, .name__content {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+
+    </style>
+  </head>
+  <body data-team="{{{team.name}}}" data-logo="" data-date-toggle="{{{ SCU_toggle-date--ce }}}" data-date-label="{{ SCU_date-label--ce }}">
+    <div class="content__master"> 
+      <div data-source="heading">{{{ SCU_heading--ce }}}</div>
+      <div data-source="subheading">{{{ SCU_subheading--ce }}}</div>
+      <div data-source="text-line-3">{{{ SCU_text-line-3--ce }}}</div>
+      <div data-source="text-line-4">{{{ SCU_text-line-4--ce }}}</div>
+
+      {{ #collection.authors--ce }}
+      {{ #block.signatory--ce }}
+      <div class="author js-author-source">
+        {{ #signature }}<div class="authorImage"><img class="authorImage__img" src="{{{ signature }}}" /></div> {{ /signature }}
+        <div class="role"> 
+          {{#signatory}} <div class="role__line" data-max-line="2"> {{{ signatory }}} </div> {{/signatory}}  
+          {{#position}} <div class="role__line" data-max-line="2"> {{{ position }}} </div> {{/position}}
+        </div> <!-- role -->  
+      </div><!--author -->
+      {{ /block.signatory--ce }}
+      {{ /collection.authors--ce }}
+    </div> <!-- content--master -->
+
+    {{ #spreadsheet.certificates }}
+    <div class="page">
+      <div class="bleed">
+        <div class="test contain"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="inner">
+              <div class="appendcode"></div>
+              <div class="certificateType">
+                <div data-target="heading" data-max-line="2"></div>
+              </div><!-- end certificateType -->
+              <div class="main">
+                <div class="name">
+                  <div class="subheading" data-target="subheading" data-max-line="1"> </div>
+                  <div class="name__content" data-max-line="4">{{{ name }}}</div>
+                </div>
+                <div class="certification">     
+                  <div class="textLine--3" data-target="text-line-3" data-max-line="1"> </div>
+                  <p>
+                    {{{ certification }}}
+                  </p>
+                </div>
+              </div>
+              <div class="authorising__container js-date-toggle-container">
+                <div class="authorising__inner">
+                  <div class="duration">
+                    <div class="textLine--4" data-target="text-line-4"> </div>
+                    <p>{{{ duration }}}</p>
+                  </div>                
+                  <div class="authorising__date">
+                    <p>{{{ date }}}</p>
+                    <label class="js-date-target">Date</label>
+                  </div><!-- end authorising__inner -->
+                </div>
+                <div class="authorising js-author-target">
+                </div><!-- authorising__container -->
+              </div>
+              <div class="copyright">
+                <h4 class="url"></h4>
+                <p class="code">CRICOS Provider: 01241G</p>
+              </div>
+            </div><!-- wrapper -->
+          </div><!-- fit -->
+        </div><!-- test -->
+      </div><!-- bleed -->
+    </div><!-- page -->
+    {{ /spreadsheet.certificates }}
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="max-line-check.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script> 
+      const maxLineChecks = document.querySelectorAll('[data-max-line]');
+
+      function injectContent() {
+        const contentSources = document.querySelectorAll('[data-source]');
+        const contentTargets = document.querySelectorAll('[data-target]');
+
+        contentSources.forEach(contentSource => {
+          contentTargets.forEach( contentTarget => {
+            if ( contentSource.dataset.source === contentTarget.dataset.target )  {
+              contentTarget.innerText = contentSource.innerText;
+            }
+          })
+        })
+      }
+
+      function dateToggle(position) {
+        const dateContainers = document.querySelectorAll('.js-date-toggle-container');
+
+        dateContainers.forEach(container => {
+          container.classList.add(`authorising__container--${position}`);
+        });
+      }
+
+      function injectSignatures() { 
+        const authorSources = document.querySelectorAll('.js-author-source');
+        const authorTargets = document.querySelectorAll('.js-author-target');
+        let datePosition = document.body.dataset.dateToggle || 'above';         
+
+        authorTargets.forEach( authorTarget => {
+          if (authorSources.length === 2) {
+            authorTarget.classList.add('authorising--secondary');
+            // making an exception for case when both signatures are set
+            // and 'Toggle Date' input is set to 'In Line' - datePostion is forced to 'above'
+            ( datePosition == 'inLine' ) ? datePosition = 'above' : '';
+          }
+
+          authorSources.forEach( authorSource => {
+            let clonedSource = authorSource.cloneNode(true);
+            authorTarget.appendChild(clonedSource);
+          });
+        });
+
+        dateToggle(datePosition);
+      }      
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck(); 
+        });
+      });    
+
+      if ( maxLineChecks.length !== 0) {
+        maxLineChecks.forEach(maxLineCheck => {
+          overflowObserver.observe(maxLineCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }   
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectContent();
+        });
+      });    
+
+      if ( document.querySelectorAll('[data-source]').length !== 0) {
+        document.querySelectorAll('[data-source]').forEach(contentSource => {
+          injectObserver.observe(contentSource, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }      
+
+      function injectDateLabel() {
+        const dateSrc = document.body.dataset.dateLabel;
+        const dateTargets = document.querySelectorAll('.js-date-target');
+
+        dateTargets.forEach(target => target.innerText = dateSrc);
+      }
+
+      injectDateLabel();
+      injectContent();
+      injectSignatures();
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+      });   
+
+    </script>
+    <script>
+      window.showCrop = {{showCrop}}{{^showCrop}}false{{/showCrop}};
+
+                                                        if (showCrop) {
+                                                          document.querySelector('body').classList.add('crop');
+                                                        }
+
+                                                        var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+                                                          .forEach(function(page) {
+                                                          var parser = new DOMParser();
+                                                          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+                                                          var cropString = (
+                                                            '<div class="crop-marks">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '</div>'
+                                                          )
+
+                                                          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+                                                          !!window.showCrop && page.insertBefore(cropNode, null);
+                                                        }
+                                                                  );
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+                                                          .forEach(function(bleed){
+                                                          bleed.style.cssText = !!window.showCrop ?
+                                                            'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+                                                          :
+                                                          'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+                                                        });
+
+                                                        var text = {
+                                                          appendcode: '<div style="margin-bottom: 52pt; height: 80pt;"><img src="{{{SCU_lockup-logo--hs1}}}"></div>'
+                                                        };
+
+                                                        appendText('appendcode');
+
+                                                        function appendText(input) {
+                                                          var nodeList = document.getElementsByClassName(input);
+                                                          var nodeArray = Array.from(nodeList)	
+
+                                                          nodeArray.forEach(function(node) {
+                                                            node.innerHTML = text[input];
+                                                          });
+                                                        }
+
+    </script>
+    <script>
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-limited'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedText, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..
+      });
+
+    </script>
+
+  </body>
+</html>

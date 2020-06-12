@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <style>      
+      {{{account.snippets.font}}}
+
+      h1, h2, h3, p {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+      
+      h2, h3{
+        font-weight: 600;
+      }
+      
+      p{
+        font-weight: 300;
+      }
+
+      html {
+        font-family: "Circular";
+        font-size: 11pt;
+        color: #000;
+        word-break: break-word;
+      }
+      
+      /* Helper classes */
+      .u-hide { display: none; }
+      
+      .wrapper{
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .left, .right{
+        display: flex;
+        width: 50%;
+        height: 100%;
+      }
+      
+      .right{
+        position: relative;
+      }
+      
+      .scuGraphic{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 9;
+        height: 120pt;
+        width: 90pt;
+        background-image: url(graphic.svg);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+      }
+      
+      .featureImage{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        background: #CCCCCC;
+      }
+      
+      .featureImage div{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      .left{
+        flex-direction: column;
+        padding: calc(22pt + 3mm) 10pt calc(10pt + 3mm) calc(38pt + 3mm);
+        justify-content: space-between;
+        
+      }
+      
+      .heading{
+        font-size: 18pt;
+        line-height: 19pt;
+        letter-spacing: -0.02em;
+      }
+      
+      .subHeading{
+        margin: 12pt 0;
+        color: #2A5F82;
+        font-size: 12pt;
+        line-height: 14pt;
+        letter-spacing: -0.02em;
+      }
+      
+      .copy{
+        font-size: 10pt;
+        font-weight: 300;
+        line-height: 12pt;
+        letter-spacing: -0.02em;
+      }
+      
+      .copy p{
+        margin: 0 0 0.5rem;
+      }
+      
+      .url{
+        font-size: 14pt;
+        line-height: 16pt;
+        letter-spacing: -0.02em;
+      }
+      
+      .code{
+        line-height: 8pt;
+        font-size: 7pt;
+        font-weight: 300;
+        letter-spacing: -0.02em;
+      }
+      
+      .text{
+        margin: 8mm 0 3mm 0;
+      }
+      
+      .textContainer{
+        flex: 1
+      }
+      
+      .tip {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        margin: 4pt 0;
+      }
+      
+      .tip .value {
+        width: 84%;
+      }
+      
+      .tip{
+        font-size: 10pt;
+        font-weight: 300;
+        line-height: 12pt;
+        letter-spacing: -0.02em;
+      }
+      
+      .tip label {
+        width: 16%;
+        color: #2A5F82;
+        font-weight: 600;
+      }
+      
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="" data-crop="{{show-crop}}">
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="wrapper">
+            <div class="left">
+              <div style="margin-top: 0; height: 52pt;min-height:52pt;">
+              	<img style="height: 100%;" src="{{{lockup-logo}}}">
+              </div>
+              <div class="textContainer">
+                <div class="text" data-max-height="380">
+                  <div class="headlines">
+                  {{ #headline }}<div class="heading" data-max-line="3">{{{ headline }}}</div>{{ /headline }}
+                  {{ #sub-heading }}<h3 class="subHeading" data-max-line="3">{{{ sub-heading }}}</h3>{{ /sub-heading }}
+                  <div class="copy" data-max-line="13">{{{ copy }}}</div>
+                    {{#when}}
+                    {{#where}}
+                    {{#rsvp}}
+                    <div class="tips">
+                      <p class="tip">
+                        <label>When:</label>
+                        <span class="value">{{{ when }}}</span>
+                      </p>
+                      <p class="tip">
+                        <label>Where:</label>
+                        <span class="value">{{{ where }}}</span>
+                      </p>
+                      <p class="tip">
+                        <label>RSVP:</label>
+                        <span class="value">{{{ rsvp }}}</span>
+                      </p>
+                    </div>
+                    {{/rsvp}}
+                    {{/where}}
+                    {{/when}}                
+                  </div>
+                </div>
+              </div>
+              <div class="foot">
+              <h2 class="url" data-max-line="1"><strong>{{{ url }}}</strong></h2>
+              <p class="code"><small>CRICOS provider 01241G</small></p>
+              </div>
+            </div>
+            <div class="right">
+              <div class="featureImage">
+                <div>{{{scalableImage}}}</div>
+              </div>
+              <div class="scuGraphic"></div>
+            </div>
+          </div>
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+      
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+      
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+      
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>

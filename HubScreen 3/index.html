@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      :root {
+        --blue: {{{account.colors.primary}}};
+        --green: {{{account.colors.green}}};
+        --black: #000;
+        --white: #fff;
+      }
+
+      html {
+        font-family: "Graphik";
+        font-size: 11pt;
+        color: var(--black);
+        word-break: break-word;
+      }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }    
+
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 30pt 64pt 0 66.4pt;
+        height: 120pt;
+        background-color: var(--blue);
+      }
+
+      .heading {
+        font-size: 64pt;
+        color: var(--white);
+        font-weight: 600;
+        /* text-transform: uppercase; */
+        line-height: 1.2em;
+        letter-spacing: -0.3pt;
+      }
+
+      .date {
+        padding-left: 30pt;
+        font-size: 31.3pt;
+        color: var(--white);
+        line-height: 1.2em;
+        font-weight: 500;
+        letter-spacing: 0.5pt;
+      }
+
+      .body {
+        flex: 1;
+      }
+
+      .table {
+        display: flex;
+        flex-direction: column;
+        background: var(--white);
+        height: 100%;
+      }
+
+      .table__row {
+        display: flex;
+
+        align-items: flex-start;
+        padding: 22pt 73pt 13.5pt 73pt;
+        border-bottom: 1px solid var(--black);
+      }
+
+      .table__row:last-child {
+        border-bottom: none;
+        flex-grow: 1;
+      }
+
+      .table__row:nth-child(odd) {
+        background-color: #F7F7F8;
+      }
+
+      .table__row.table__row--header {
+        height: 51pt;
+        font-size: 20pt;
+        background-color: var(--white);
+        align-items: center;
+      }
+
+      .table__cell {
+        flex: 1;
+      }
+
+      .table__cell--small {
+        width: 172pt;
+        flex: unset;
+        padding-right: 18pt;
+      }
+
+      .table__heading {
+
+        font-size: 27pt;
+        font-weight: 500;
+        line-height: 1em;
+        letter-spacing: -0.7pt;
+      }
+
+      .time {
+        font-size: 23pt;
+        font-weight: 500;
+        line-height: 1.2em;
+      }
+
+      .content__header h1 {
+        font-size: 34.4pt;
+        font-weight: 500;
+        line-height: 1.1em;
+      }
+
+      .content__header h2 {
+        font-size: 27pt;
+        font-weight: 400;
+      }
+
+      .content__header h1 + h2 {
+        margin-top: 8.8pt;
+      }
+
+      .content__header + .content__body {
+        margin-top: 22pt;
+        width: 1039pt;
+      }
+
+      .content__body ul {
+        padding-left: 28.5pt;
+      }
+
+      .single-column {
+        column-count: 1;
+      }
+
+      .dual-column {
+        column-count: 2;
+        column-gap: 26pt;
+        column-fill: balance;
+      }
+
+      .content__body li, 
+      .content__body p {
+        position: relative;
+        margin-bottom: 11.2pt;
+        font-size: 20.2pt;
+        line-height: 1.15em;
+      }
+
+      .content__body ul + p {
+        margin-top: 10pt;
+      }
+
+      li:before {
+        content: '';
+        position: absolute;
+        top: 7pt;
+        left: -28pt;
+        width: 8pt;
+        height: 8pt;
+        border-radius: 50%;
+        background-color: var(--black);
+      }
+
+      .footer {
+        height: 59pt;
+        background-color: var(--blue);
+      }
+
+      {{{account.snippets.font}}}
+
+      .heading {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <div class="heading" data-max-line="1">{{{SCU_heading--hs3}}}</div><!--heading-->
+            <div class="date" data-max-line="1">{{{SCU_date--hs3}}}</div><!--date-->
+          </div><!--header-->
+          <div class="body">
+            <div data-max-height="dynamic" style="height: 100%">
+              <div class="table">
+                <div class="table__row table__row--header">
+                  <div class="table__cell table__cell--small">
+                    <div class="table__heading" data-max-line="1">{{{SCU_table-column-1-heading--hs3}}}</div><!--table__heading-->
+                  </div><!--table__cell-->
+                  <div class="table__cell">
+                    <div class="table__heading" data-max-line="1">{{{SCU_table-column-2-heading--hs3}}}</div><!--table__heading-->
+                  </div><!--table__cell-->
+                </div><!--table__row-->
+                {{#collection.SCU_content--hs3}}
+                <div class="table__row">
+                  <div class="table__cell table__cell--small">
+                    <div class="time" data-max-line="1">{{{SCU_start-time--hs3}}} —</div><!--time-->
+                    <div class="time" data-max-line="1">{{{SCU_end-time--hs3}}}</div><!--time-->
+                  </div><!--table__cell-->
+                  <div class="table__cell">
+                    <div class="content">
+                      <div class="content__header" data-max-height="115">{{{SCU_heading-inner--hs3}}}</div><!--content__header-->
+                      {{#SCU_copy--hs3}}
+                      <div class="content__body {{{SCU_copy-layout--hs3}}}{{^SCU_copy-layout--hs3}}dual-column{{/SCU_copy-layout--hs3}}">{{{SCU_copy--hs3}}}</div><!--content__body-->
+                      {{/SCU_copy--hs3}}
+                    </div><!--content-->
+                  </div><!--table__cell-->
+                </div><!--table__row-->
+                {{/collection.SCU_content--hs3}}
+              </div><!--table-->
+            </div><!--dynamic-->
+          </div><!--body-->
+          <div class="footer"></div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>

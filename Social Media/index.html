@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      :root {
+        --black: #000;
+      }
+
+      html {
+        font-family: "Graphik";
+        font-size: 11pt;
+        color: var(--black);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .body {
+        display: flex;
+        position: relative;
+        flex: 1;
+      }
+
+      .instagram .body {
+        padding: 62pt 62pt 0pt 62pt;
+      }
+
+      .facebook .body {
+        padding: 64pt 62pt 0pt 62pt;
+      }
+
+      .position-a{
+        justify-content: flex-start;
+      }
+
+      .position-b {
+        justify-content: flex-end;
+      }
+
+      .background-image {
+        z-index: 0;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index : 1;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.7);    
+      }
+
+      .instagram .content {
+        padding: 29pt 29pt 21pt 28pt;
+        height: 287pt;
+        width: 444pt;
+      }
+
+      .facebook .content {
+        padding: 22pt 28pt 24pt 28pt;
+        height: 239pt;
+        width: 410pt
+      }
+
+      .position-a .content{
+        text-align: left;
+      }
+
+      .position-b .content{
+        text-align: right;
+        padding-right: 32pt;
+      }
+
+      .facebook .position-b .content{
+        text-align: left;
+        padding-right: 32pt;
+      }
+
+      .heading {
+        font-weight: bold;
+        margin-bottom: 16pt;
+      }
+
+      .heading h1 {
+        font-weight: bold;
+        font-size: {{{SCU_heading-size}}}%;
+        line-height: 1.22em;
+      }
+
+      .instagram .heading {
+        font-size: 48.6pt;
+        line-height: 1.22em;
+        letter-spacing: 0.48pt;
+      }
+
+
+      .facebook .heading {
+        font-size: 40.3pt;
+        line-height: 1.18em;
+        letter-spacing: 0.2pt;
+      }
+
+      .subheading h2 {
+        font-size: {{{SCU_subheading-size}}}%;
+        line-height: 1.25em;
+      }
+
+      .instagram .subheading {
+        font-size: 28.2pt;
+        line-height: 1.25em;
+        word-spacing: -0.5pt;
+      }
+
+
+      .facebook .subheading {
+        font-size: 23.3pt;
+        line-height: 1.26em;
+        word-spacing: -1pt;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: center;
+      }
+
+      .instagram .footer {
+        height: 105pt;
+      }
+
+      .facebook .footer {
+        height: 83pt;
+      }
+
+      .instagram .logo {
+        height: 58.6pt;
+        margin-top: 18.6pt;
+      }
+
+      .facebook .logo {
+        height: 45pt;
+        margin-top: 15pt;
+        margin-left: 1pt;
+      }
+
+      {{{account.snippets.font}}}
+
+     .heading h1{
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+      
+      
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit {{{ SCU_variation--sm }}}">
+
+          <div class="body {{#text-box}}{{ text-box }}{{/text-box}}{{^text-box}}position-a{{/text-box}}">
+            <div class="background-image">
+              <div class="reposition-fix"> 
+                {{{SCU_background-image--sm}}}
+              </div>
+            </div>
+            <div class="content">
+              
+              <div class="heading" data-max-line="2">{{{ SCU_heading--sm }}}</div> <!--heading-->
+              <div class="subheading" data-max-line="3">{{{ SCU_subheading--sm }}}</div> <!--subheading-->
+            </div> <!--content-->
+          </div> <!--body-->
+
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>

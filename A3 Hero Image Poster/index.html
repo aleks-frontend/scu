@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">      
+      .test {        
+        opacity: 0.5;
+        z-index: 9;
+      }
+
+      {{{account.snippets.font}}}
+
+      h1, h2, h4 {
+      font-family: var(--headingFont);
+      font-weight: var(--headingWeight);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="page">
+      <div class="bleed">
+        <div class="test contain"></div>
+        <div class="fit">          
+          <div class="wrapper">            
+            <div class="hero">
+              <div class="heroImage fit" style="z-index: -1;">
+                {{{ heroImage }}}
+              </div>
+              <div style="position: absolute; top: 0px; left:0px; height: 210pt; background-color: #f2f2f2;">
+                <img style="height: 100%;" src="https://files.outfit.io/media_library_items/171020/SCU_RGB_Vertical.png">
+              </div>
+            </div>
+            <div class="main">
+              {{#headline}}<h1 class="headline text-limited">{{{ headline }}}</h1>{{/headline}}
+              <div class="bodyCopy boxOverflow">
+                <div class="boxInner">
+                  {{{ bodyCopy }}}
+                  <div class="foot">
+                    {{#url}}<h3 class="url text-limited">{{{ url }}}</h3>{{/url}}
+                    <p class="code">CRICOS Provider: 01241G</p>
+                  </div>
+                </div>
+              </div>                            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{showCrop}}{{^showCrop}}false{{/showCrop}};
+
+                                                        if (showCrop) {
+                                                          document.querySelector('body').classList.add('crop');
+                                                        }
+
+                                                        var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+                                                          .forEach(function(page) {
+                                                          var parser = new DOMParser();
+                                                          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+                                                          var cropString = (
+                                                            '<div class="crop-marks">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '</div>'
+                                                          )
+
+                                                          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+                                                          !!window.showCrop && page.insertBefore(cropNode, null);
+                                                        }
+                                                                  );
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+                                                          .forEach(function(bleed){
+                                                          bleed.style.cssText = !!window.showCrop ?
+                                                            'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+                                                          :
+                                                          'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+                                                        });
+    </script>
+    <script>
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-limited'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedText, 1000);
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.boxOverflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.boxInner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedBox, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..      
+      });
+    </script>
+  </body>
+</html>

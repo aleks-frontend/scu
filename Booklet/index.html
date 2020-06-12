@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />    
+  </head>
+  <style>
+    {{{account.snippets.font}}}
+
+    h1, 
+    h2,
+    .heading h1, 
+    .heading, 
+    .headline, 
+    .table-heading {
+      font-family: var(--headingFont);
+      font-weight: var(--headingWeight);
+    }
+    .headline {
+      margin-top: 120pt;
+    }
+  </style>
+  <body data-team="{{{team.name}}}" data-logo="">
+    <div class="page front">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="main">
+              <div style="position: absolute; top: 20px; left:20px; height: 210pt;">
+                <img style="height: 100%;" src="https://files.outfit.io/media_library_items/171020/SCU_RGB_Vertical.png">
+              </div>
+              <div class="headline text-overflow">
+                <div class="inner">
+                  {{{headline}}}
+                </div>
+              </div>
+            </div>
+            <div class="fold contain"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{#collection.scu-booklet-pages}}
+    {{#block.scu-booklet-page-1}}
+    <div class="page page-1 page-type-1 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size blue">
+            <div class="top"></div>
+            <div class="bottom">
+              <div class="copy box-inner full-height text-overflow">
+                <div class="inner multi-columns two-columns">
+                  {{{scu-copy}}}
+                  {{#headshot}}
+                  <div class="headshot image-container">
+                    {{{headshot}}}
+                  </div>
+                  {{/headshot}}
+                  {{#author-details}}
+                  <div class="author-details text-overflow">
+                    <div class="inner">
+                      {{{author-details}}}
+                    </div>
+                  </div>
+                  {{/author-details}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-1}}
+    {{#block.scu-booklet-page-2}}
+    <div class="page page-2 page-type-2 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">
+              {{#hero-image}}
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+              </div>
+              {{/hero-image}}
+              <div class="copy box-inner text-overflow">
+                <div class="inner multi-columns three-columns">
+                  {{{scu-copy}}}                                        
+                </div>
+              </div>
+              {{#footnotes}}
+              <div class="footnotes text-overflow">
+                <div class="inner">
+                  {{{footnotes}}}
+                </div>
+              </div>
+              {{/footnotes}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-2}}
+    {{#block.scu-booklet-page-3}}
+    <div class="page page-3 page-type-3 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-size">
+              <div class="left">
+                <div class="copy box-inner full-height text-overflow">
+                  <div class="inner multi-columns">
+                    {{{scu-copy}}}
+                  </div>
+                </div>
+              </div>
+              <div class="right full-height">
+                <div class="copy text-overflow">
+                  <div class="inner multi-columns two-columns">
+                    {{{scu-copy-2}}}
+                  </div>
+                </div>
+                {{#hero-image}}
+                <div class="hero-image image-container">
+                  {{{hero-image}}}
+                  {{#emphasis-text}}
+                  <div class="emphasis text-overflow">
+                    <div class="inner">{{{emphasis-text}}}</div>
+                  </div>
+                  {{/emphasis-text}}
+                </div>
+                {{/hero-image}}
+              </div>                                   
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-3}}    
+    {{#block.scu-booklet-page-4}}
+    <div class="page page-2 page-type-4 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">
+              {{#hero-image}}
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+              </div>
+              {{/hero-image}}
+              <div class="copy box-inner text-overflow">
+                <div class="inner multi-columns three-columns">
+                  {{{scu-copy}}}                                        
+                </div>
+              </div>
+              {{#footnotes}}
+              <div class="footnotes text-overflow">
+                <div class="inner">
+                  {{{footnotes}}}
+                </div>
+              </div>
+              {{/footnotes}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-4}}
+    {{#block.scu-booklet-page-5}}
+    <div class="page page-5 page-type-5 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div style="display: none;">{{{heading}}}</div>
+        <div class="wrapper fit">
+          <div class="top">
+            {{#hero-image}}
+            <div class="hero-image image-container">
+              {{{hero-image}}}
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            {{/hero-image}}                
+          </div>
+          <div class="bottom box-inner full-width">                
+            <div class="left light-gray">
+              <div class="copy text-overflow">
+                <div class="inner multi-columns">
+                  {{{scu-copy}}}
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="copy box-inner full-height text-overflow">
+                <div class="inner multi-columns two-columns">
+                  {{{scu-copy-2}}}                      
+                  <table>
+                    {{#spreadsheet.scu-table}}
+                    <tr>                          
+                      <th>{{{col-1}}}</th>
+                      <td>{{{col-2}}}</td>
+                    </tr>
+                    {{/spreadsheet.scu-table}}
+                  </table>                      
+                </div>
+              </div>                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-5}}    
+    {{#block.scu-booklet-page-6}}
+    <div class="page page-2 page-type-6 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size cyan">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">
+              {{#hero-image}}
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+              </div>
+              {{/hero-image}}
+              <div class="copy box-inner text-overflow" style="margin-bottom: 28pt;">
+                <div class="inner multi-columns three-columns">
+                  {{{scu-copy}}}                                        
+                </div>
+              </div>
+              {{#footnotes}}
+              <div class="footnotes text-overflow">
+                <div class="inner">
+                  {{{footnotes}}}
+                </div>
+              </div>
+              {{/footnotes}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-6}}
+    {{#block.scu-booklet-page-7}}
+    <div class="page page-7 page-type-7 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content light-gray">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">                  
+              <div class="copy box-inner text-overflow" style="margin-bottom: 28pt;">
+                <div class="inner multi-columns">
+                  {{{scu-copy}}}                                        
+                </div>
+              </div>                  
+            </div>
+          </div>
+          <div class="right hero-image image-container">
+            {{{hero-image}}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-7}}    
+    {{#block.scu-booklet-page-8}}
+    <div class="page page-2 page-type-8 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size light-gray">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">
+              {{#hero-image}}
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+              </div>
+              {{/hero-image}}
+              <div class="copy box-inner text-overflow">
+                <div class="inner multi-columns three-columns">
+                  {{{scu-copy}}}                                        
+                </div>
+              </div>
+              {{#footnotes}}
+              <div class="footnotes text-overflow">
+                <div class="inner">
+                  {{{footnotes}}}
+                </div>
+              </div>
+              {{/footnotes}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-8}}
+    {{#block.scu-booklet-page-9}}
+    <div class="page page-2 page-type-9 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>{{{scu-heading}}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">                  
+              <div class="copy box-inner text-overflow">
+                <div class="inner multi-columns">
+                  {{#collection.scu-tables}}
+                  <div class="table-block">
+                    <div class="table-heading light-gray">{{{table-heading}}}</div>
+                    <table style="width: 100%;">
+                      {{#spreadsheet.scu-table}}
+                      <tr class="{{#is-heading}}heading{{/is-heading}}">      
+                        {{#col-1}}<td>{{{col-1}}}</td>{{/col-1}}
+                        {{#col-2}}<td>{{{col-2}}}</td>{{/col-2}}
+                        {{#col-3}}<td>{{{col-3}}}</td>{{/col-3}}
+                        {{#col-4}}<td>{{{col-4}}}</td>{{/col-4}}
+                        {{#col-5}}<td>{{{col-5}}}</td>{{/col-5}}
+                        {{#col-6}}<td>{{{col-6}}}</td>{{/col-6}}
+                      </tr>
+                      {{/spreadsheet.scu-table}}
+                    </table>
+                  </div>
+                  {{/collection.scu-tables}}
+                </div>
+              </div>                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-9}}   
+    {{#block.scu-booklet-page-10}}
+    <div class="page page-10 page-type-10 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="hero-image image-container">
+            {{{hero-image}}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-10}}    
+    {{/collection.scu-booklet-pages}}
+
+    <div class="page back">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="main">              
+              <div class="logo contain"></div>
+              <div class="website">scu.edu.au</div>
+              <div class="socials">
+                <a class="facebook"><img src="facebook.svg" /></a>
+                <a class="twitter"><img src="twitter.svg" /></a>
+                <a class="instagram"><img src="instagram.svg" /></a>
+              </div>
+            </div>
+            <div class="fold contain"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed) {
+        bleed.style.cssText = !!window.showCrop 
+          ? 'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        : 'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm';
+      }); 
+
+      function checkHeight() {
+        $('.text-overflow')
+          .each(function() {
+          const e = $(this);
+          const height = e.find('.inner').height();      
+          const parentHeight = e.height() + 2;
+
+          if (height > parentHeight) {
+            e.addClass('overflow');
+          } else {
+            e.removeClass('overflow');
+          }
+        });        
+      }
+
+      function loop() {
+        checkHeight();
+      } setInterval(loop, 1000);
+    </script>
+  </body>
+</html>

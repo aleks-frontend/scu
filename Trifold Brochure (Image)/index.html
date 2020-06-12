@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">      
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/95f657e3891ca1c8d4e7c39567f762f9/Capture5.JPG');
+        opacity: 0.5;        
+      }
+
+      .foldMark1 { transform: rotate(270deg); top: -9px; left: 99mm; }
+      .foldMark2 { transform: rotate(270deg); top: -9px; left: 197mm; }
+      .foldMark3 { bottom: -9px; left: 99mm; }
+      .foldMark4 { bottom: -9px; left: 197mm; }
+
+      .page.spread .foldMark1 { transform: rotate(180deg); top: -9px; right: 99mm; left: auto; }
+      .page.spread .foldMark2 { transform: rotate(180deg); top: -9px; right: 197mm; left: auto; }
+      .page.spread .foldMark3 { transform: rotate(90deg); bottom: -9px; right: 99mm; left: auto; }
+      .page.spread .foldMark4 { transform: rotate(90deg); bottom: -9px; right: 197mm; left: auto; } 
+
+      {{{account.snippets.font}}}
+
+      .headline, 
+      .backPageHeadline, 
+      h1,
+      h2,
+      h3 {
+        font-family: var(--headingFont) !important;
+        font-weight: var(--headingWeight) !important;
+      }
+    </style>
+  </head>
+  <body data-team="{{{team.name}}}" data-logo="">
+
+    <div class="page front">
+      <div class="bleed">
+        <div class="test contain"></div>        
+        <div class="fit">
+          <div class="wrapper">
+            <div class="left">
+              <div class="hero leftHero">
+                <div class="firstRevealHeroImage fit" style="opacity: {{first-reveal-hero-image-opacity}}{{^first-reveal-hero-image-opacity}}0.2{{/first-reveal-hero-image-opacity}}">
+                  {{{ firstRevealHeroImage }}}
+                </div>
+                <div class="leftHeroContent">
+                  <ul class="firstRevealBullets">
+                    {{ #spreadsheet.heroPoints }}
+                    <li>{{{ text }}}</li>
+                    {{ /spreadsheet.heroPoints }}
+                  </ul>
+                </div>
+              </div>               
+            </div>
+            <div class="center">
+              <div class="hero centerHero">                
+                <div class="heroContent centerHeroContent">
+                  {{#backPageHeadline}}<h2 class="backPageHeadline text-limited">{{{ backPageHeadline }}}</h2>{{/backPageHeadline}}
+                  {{ #backPageContactDetails }}
+                  <div class="locations boxOverflow">
+                    <div class="boxInner">
+                      {{{ backPageContactDetails }}}
+                    </div>                    
+                  </div>
+                  {{ /backPageContactDetails }}
+                  <h4 class="website">
+                    Find out more<br />
+                    <a href="https://{{{ url }}}">
+                      {{{ url }}}
+                    </a>
+                  </h4>
+                  <div class="socials">
+                    <a class="facebook"><img src="facebook.svg" /></a>
+                    <a class="twitter"><img src="twitter.svg" /></a>
+                    <a class="instagram"><img src="instagram.svg" /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="foot centerFoot">
+                <div style="margin-top: 0; height: 48pt;">
+                  <img style="height: 100%;" src="{{{lockup-logo}}}">
+                </div>
+                <div class="code">CRICOS Provider Code: 01241G</div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="head rightHead">
+                <div style="margin-top: 0; height: 48pt;">
+                  <img style="height: 100%;" src="{{{lockup-logo}}}">
+                </div>
+              </div>
+              <div class="hero rightHero">
+                <div class="heroImage fit">{{{ heroImage }}}</div>
+                <div class="heroContent rightHeroContent">
+                  {{ #headline }}<h1 class="headline text-limited">{{{ headline }}}</h1>{{ /headline }}
+                  {{ #subHeading }}<h4 class="subHeading text-dark-blue text-limited">{{{ subHeading }}}</h4>{{ /subHeading }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page spread">
+      <div class="bleed">
+        <div class="test contain"></div>        
+        <div class="fit">
+          <div class="wrapper">
+            <div class="spreadLeft">
+              <div class="imagesGroup1">
+                <div class="image-container spreadImage1">{{{ spreadImage1 }}}</div>
+                <div class="image-container spreadImage2">{{{ spreadImage2 }}}</div>
+              </div>
+              {{ #spreadHighlight }}<h3 class="spreadHighlight text-limited">{{{ spreadHighlight }}}</h3>{{ /spreadHighlight }}
+              <div class="imagesGroup2">
+                <div class="image-container spreadImage3">{{{ spreadImage3 }}}</div>
+                <div class="image-container spreadImage4">{{{ spreadImage4 }}}</div>
+              </div>
+            </div>
+            <div class="spreadRight boxOverflow">
+              <div class="spreadCopy boxInner">{{{ spreadCopy }}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{showCrop}}{{^showCrop}}false{{/showCrop}};
+
+                                                        if (showCrop) {
+                                                          document.querySelector('body').classList.add('crop');
+                                                        }
+
+                                                        var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+                                                          .forEach(function(page) {
+                                                          var parser = new DOMParser();
+                                                          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+                                                          var cropString = (
+                                                            '<div class="crop-marks">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark1">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark2">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark3">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark4">' +
+                                                            '</div>'
+                                                          )
+
+                                                          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+                                                          !!window.showCrop && page.insertBefore(cropNode, null);
+                                                        }
+                                                                  );
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+                                                          .forEach(function(bleed){
+                                                          bleed.style.cssText = !!window.showCrop ?
+                                                            'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+                                                          :
+                                                          'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+                                                        });
+
+
+    </script>
+    <script>
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-limited'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedText, 1000);
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.boxOverflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.boxInner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedBox, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..                
+      });
+    </script>
+  </body>
+</html>

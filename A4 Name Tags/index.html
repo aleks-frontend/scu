@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <style>
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/34ee5488ca02b180e5946df2dcd76689/scanned_%281%29.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      /*-------------------*\
+      GLOBAL STYLES
+      \*-------------------*/
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: "Graphik", sans-serif;
+        background-color: #fff;
+      }
+      h1, h2, h3, h4, h5, h6 { 
+        margin: 0; 
+        line-height: 1em; 
+      }
+      /*--------------------*\
+      MAIN STYLES
+      \*--------------------*/
+      .page { 
+        padding: 28.2mm 10.2mm;
+        position: relative; 
+      }
+      .card { 
+        position: relative; 
+        width: 50%; 
+        /*border: 1px solid #404040; */
+        border: 1px solid transparent;
+        padding: 0 0 0 8rem;
+      }      
+      .badge .card {
+        height: 55.5mm;
+      }
+      .badge .page {
+        padding: 37.5mm 18.5mm;
+      }
+      .logo { 
+        position: absolute; 
+        width: 4.7rem; 
+        height: 6rem;
+        top: 29px; 
+        left: 21px; 
+        z-index: 1; 
+        background-image: url('logo.svg');
+        background-position: top left;
+        background-repeat: no-repeat;
+      }
+
+      body[data-team="SCU International"][data-logo="international"] .logo {
+        background-image: url('logo-international.svg');
+      }
+
+      .supportGraphic {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 7rem;
+      }
+      .spreadsheet { 
+        height: 100%;
+        padding: 2.5rem 0.5rem 0.4rem;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+      }
+      .nametags {        
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between;
+      }  
+      .names {
+        font-weight: 300;
+      }
+      .names h1 { 
+        font-size: 1.4em;
+        font-weight: 600;
+        margin: 0 0 0.3rem;
+        min-width: 100%; /* Because fitted text adds inline */
+      }
+      .bottom__content .eventName {
+        margin: 0 0 0.5rem;
+      }
+      .bottom__content .cricos {
+        font-size: 0.5em;
+        font-weight: 400;
+      }
+      .printcode { position: absolute; bottom: 20px; right: 20px; }
+      .printcode p { font-size: 10px;}
+
+      /*--------------------*\
+      BADGE (10) STYLES
+      \*--------------------*/
+
+      .badge-10 .page {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .badge-10 .page {
+        padding: 9.5mm 14.9mm;
+      }
+
+      .badge-10 .card {
+        height: 55.5mm;
+        width: 90mm;
+      }
+
+      .badge-10 .name {
+        display: none !important;
+      }
+
+      .badge-10 .card {
+        padding: 0 0 0 7rem;
+      }
+
+      /*-----------------*\
+      STICKER VARIATIONS
+      \*-----------------*/
+      .sticker .page {
+        padding: 33.2mm 3.6mm;
+      }
+      .sticker .card {
+        height: 33.1mm;
+        width: 49%;
+        border-radius: 10px;
+      }
+      .sticker .logo {
+        width: 5.9rem;
+        height: 6rem;
+        top: 15px;
+        left: 16px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .sticker .supportGraphic {
+        display: none;
+      }
+      .sticker .spreadsheet {
+        padding: 1.3rem 1rem 1.3rem 0.5rem;
+        justify-content: center;
+      }
+      .sticker .names h1 {
+        font-size: 2.4em;
+        margin: 0;
+      }
+      .sticker .bottom__content {
+        margin: 0.7rem 0 0;
+      }
+      .sticker .bottom__content .eventName {
+        margin: 0;
+      }
+      .sticker .position,
+      .sticker .cricos {
+        display: none !important;
+      }
+
+      .badge .fitted-text1 { 
+        display: none !important;
+      }
+      /*----------------*\
+      OVERFLOW STYLES
+      \*----------------*/
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'This input is limited to two lines please remove some text';top:25px;background-color:#000;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+    </style>
+  </head>
+  <body data-team="{{{team.name}}}" data-logo="">
+    <div class="pages {{{format}}}"></div>
+    <div class="template" style="display: none">
+      <div class="page">
+        <!--<div class="placeholder"></div>-->
+        <div class="nametags">
+        </div><!--nametags-->
+        <div class="printcode"><p>Order Code: <span class="order-code">86860019</span></p></div>
+      </div><!--page-->
+
+    </div><!--template-->
+
+    {{#spreadsheet.nameBadges}}
+    <div class="card">
+      <div class="logo"></div><!--logo-->     
+      <img class="supportGraphic" src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b23ee519ab6d610a42e88fcbba4004f4/graphicRibbon-01.svg" alt="" />
+      <div class="spreadsheet">
+        <div class="names">
+          <h1 class="name fitted-text1">{{{ title }}} {{{ firstname }}} {{{ surname }}}</h1>
+          <br />
+          <h2 class="position">{{{ title }}} <span style="font-weight: bold;">{{{ firstname }}}</span> {{{ surname }}}<br>{{{ position }}}<br>{{{ company }}}</h2>
+        </div><!--names-->
+        <div class="bottom__content">
+          <h2 class="eventName" data-limit="2"></h2>
+          <p class="cricos">Southern Cross University<br>CRICOS Provider: 01241G</p>
+        </div>
+      </div><!--spreadsheet-->
+    </div><!--card-->    
+    {{/spreadsheet.nameBadges}}
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+      loopThroughPages();
+
+      function loopThroughPages() {
+        var pages = document.querySelector('.pages');
+        var pageTemplate = document.querySelector('.template .page');
+        var entries = document.querySelectorAll('.card');
+        pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+        // item count to decide when to add a new page
+        var itemCount = 0;
+
+        // CHECK FORMAT TO SEE HOW MANY WE CAN FIT TO PAGE
+        var fitCount;
+        if(pages.classList.contains("sticker")) {
+          fitCount = 14;
+        }
+        else if (pages.classList.contains("badge-10")) {
+          fitCount = 10;
+        } else {
+          fitCount = 8;
+        }
+
+        // so we know which page to append to
+        var allPages;
+
+
+        entries.forEach(function(entry) {
+          if (itemCount < fitCount) {
+            allPages = document.querySelectorAll('.pages .page');
+            allPages[allPages.length - 1].querySelector('.nametags').insertBefore(entry, null);
+            itemCount++;
+          }
+          else {
+            // add a new page
+            pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+            allPages = document.querySelectorAll('.pages .page');
+            allPages[allPages.length - 1].querySelector('.nametags').insertBefore(entry, null);
+
+            // reset count
+            itemCount = 1;
+          }
+        });
+      }
+
+      // Inject Event Name OR if empty remove nodes
+      var eventName = "{{{eventName}}}";
+      // Null Checking
+      {{^eventName}}
+      eventName = null;
+      {{/eventName}}
+        var eventNodes = document.querySelectorAll(".eventName");
+        if(eventName != null) {
+          // Inject Content
+          eventNodes.forEach( x => x.innerHTML = eventName);
+        }
+        else {
+          // Remove Nodes
+          eventNodes.forEach(x => x.parentElement.remove());
+        }
+
+        // Inject Order Code
+        var ordercode = "{{{format}}}";
+
+        if (ordercode === "badge") {
+          ordercode = "Avery Code - 5162"
+        } else if (ordercode === "badge-10") {
+          ordercode = "Staples Code - 86860019"
+        } else {
+          document.querySelector('.printcode').remove();
+        }
+
+        var codeNodes = document.querySelectorAll(".order-code");
+        codeNodes.forEach(node => node.innerHTML = ordercode);
+
+    </script>
+    <!-- Name Splitting Script -->
+    <script>
+      // Check if we are in sticker format.
+      var check = document.querySelector(".sticker");
+      if(check != null) {
+
+        // Grab all the names
+        var allNames = document.querySelectorAll(".name token-value");
+        if(allNames.length == 0) {
+          allNames = document.querySelectorAll(".name");
+        }
+        allNames.forEach(name => name.innerHTML = name.innerHTML.split(" ", 1));
+      }
+    </script>
+    <!-- Text Line Limit -->
+    <script>
+      /*
+      *  Include this Snippet to Enforce Text lockups and line limits
+      *  NOTES 
+      *   - This requires base.css as it utilises overflow clss styles.
+      *   - Your element must have an explicit line-heights set
+      */
+      function checkLimitedText() {
+        // Grab all elements with line limits
+        document.querySelectorAll('[data-limit]')
+          .forEach(function (e) {
+          // Check the line limit set    
+          const limit = e.getAttribute('data-limit');
+          // Count the amount of lines currently in the element
+          const lines = countElementLines(e); 
+          if (lines > limit) {
+            e.classList.add("overflow");
+          } 
+          else {
+            e.classList.remove("overflow");
+          }
+        }
+                  );
+      }
+      // Calculates the amount lines in a node
+      // based on the css line-height value
+      function countElementLines(e) {
+        const height = e.clientHeight;
+        const lineHeight = parseFloat(window.getComputedStyle(e).getPropertyValue('line-height'));
+        const lines = Math.ceil(height / lineHeight);
+        return lines;
+      }
+      setInterval(checkLimitedText, 1000);
+
+      var logoType = '{{ logo }}';
+      document.querySelector('body').setAttribute('data-logo', logoType || 'standard');
+
+    </script>
+    <!-- Text Fit -->
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.2.min.js" type="text/javascript"></script>
+    <script>
+      // Grab the Font Size off the element
+      TextFit.fit({
+        selector: '.fitted-text1',
+      });
+      TextFit.fit({
+        selector: '.fitted-text16',
+      })
+    </script>
+  </body>
+</html>

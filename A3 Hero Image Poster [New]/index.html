@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html data-sign="OSB/OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Circular/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      /*
+      Input Order
+      {{show-crop}}
+      {{placeholder-toggle-new}}
+      {{placeholder-image-1}}
+      {{placeholder-opacity}}
+      {{placeholder-validation}}
+      {{SCU_hero-image--hip}}
+      {{{SCU_logo--hip}}}
+      {{SCU_logo-size--hip}}
+      {{SCU_headline--hip}}}
+      {{{SCU_column-paragraph-text-size--hip}}}
+      {{{SCU_column-left--hip}}}
+      {{{SCU_column-right--hip}}}
+      {{{SCU_website--hip}}}
+      {{{SCU_cricos--hip}}}
+      */
+
+      :root {
+        --white: {{{account.colors.white}}};
+        --grey: {{{account.colors.logo-bg}}};
+        --yellow: {{{account.colors.yellow}}};
+        --green: {{{account.colors.green}}};
+        --aqua: {{{account.colors.aqua}}};
+        --blue: {{{account.colors.primary}}};
+        --black: #000;
+
+        --logo-background-color: var(--grey);
+      }
+
+      html {
+        font-family: 'Graphik';
+        color: var(--black);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0.8rem;
+      }
+
+      .header {
+        position: relative;
+        flex: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .logo__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(5rem + 3mm);
+        height: calc(5rem + 3mm);
+      }
+
+      .logo__sizeController {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: {{SCU_logo-size--hip}}%;
+        height: {{SCU_logo-size--hip}}%;
+        font-size: {{SCU_logo-size--hip}}%;
+        padding-top: 3mm;
+        padding-left: 3mm;
+        background: var(--logo-background-color);
+      }
+
+      .logo {
+        height: 3em;
+        width: 3em;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .body {
+        max-height: 13.4rem;
+        padding: 0 1.07rem;
+      }
+
+      .heading {
+        letter-spacing: -0.019em;
+        color: var(--blue);
+      }
+
+      .heading h1 {
+        margin-bottom: 0.6em;
+        font-size: 0.99rem;
+        font-weight: 600;
+        line-height: 1em;
+      }
+
+      .heading h2 {
+        margin-bottom: 0.6em;
+        font-size: 0.53rem;
+        font-weight: 600;
+        line-height: 1em;
+      }
+
+      .content {
+        display: flex;
+      }
+
+      .column {
+        width: 6rem;
+      }
+
+      .column--right {
+        margin-left: 0.25rem;
+        margin-bottom: 1.1rem;
+      }
+
+      .column p,
+      .column li,
+      .column a {
+        font-size: calc({{{SCU_column-paragraph-text-size--hip}}}{{^SCU_column-paragraph-text-size--hip}}97{{/SCU_column-paragraph-text-size--hip}} * 0.312rem / 100);
+        line-height: 1.2em;
+        letter-spacing: -0.02em;
+      }
+
+      .column p {
+        margin-bottom: 1em;
+      }
+
+      .column h4 {
+        margin-bottom: 1.1em;
+        font-size: 0.295rem;
+        font-size: calc({{{SCU_column-paragraph-text-size--hip}}}{{^SCU_column-paragraph-text-size--hip}}97{{/SCU_column-paragraph-text-size--hip}} * 0.325rem / 100);
+        line-height: 1.2em;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        color: var(--blue);
+      }
+
+      .column ul {
+        margin-bottom: 1em;
+        padding-left: 0.3rem;
+        font-size: 0.303rem;
+        list-style-type: disc;
+      }
+
+      .column li {
+        margin-bottom: 0.03rem;
+      }
+
+      .column a {
+        color: var(--blue);
+      }
+
+      .column strong {
+        font-weight: 600;
+      }
+
+      .column p:last-child,
+      .column h4:last-child,
+      .column ul:last-child,
+      .column li:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 1.15rem;
+      }
+
+      .footer__inner {
+        position: relative;
+        width:7.25rem;
+      }
+
+      .website {
+        width: 6rem;
+        font-size: 0.379rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.2em;
+      }
+
+      .cricos__container {
+        position: absolute;
+        width: 5rem;
+        left: 0;
+        bottom: -0.3rem;
+      }
+
+      .cricos {
+        position: relative;
+        font-size: 8pt;
+        letter-spacing: -0.02em;
+        line-height: 1.2em;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header">
+            <div class="backgroundImage">
+              <div class="reposition-fix">{{{SCU_hero-image--hip}}}</div><!-- reposition-fix -->
+            </div><!-- backgroundImage -->
+            <div class="logo__container">
+              <div class="logo__sizeController">
+                {{#SCU_logo--hip}}
+                <img class="logo" src="{{{SCU_logo--hip}}}"> <!--logo-->
+                {{/SCU_logo--hip}}
+              </div><!-- logo__sizeController -->
+            </div><!-- logo__container -->
+          </div><!-- header -->
+          <div class="body" data-max-height="css">
+            {{#SCU_headline--hip}}
+            <div class="heading u-heading-patch" data-max-line="2">{{{SCU_headline--hip}}}</div> <!--heading-->
+            {{/SCU_headline--hip}}
+            <div class="content">
+              <div class="column column--left u-heading-patch">{{{SCU_column-left--hip}}}</div> <!--column-->
+              <div class="column column--right u-heading-patch">{{{SCU_column-right--hip}}}</div> <!--column-->
+            </div> <!--content-->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="footer__inner">
+              {{#SCU_website--hip}}
+              <div class="website"data-max-line="1">{{{SCU_website--hip}}}</div> <!--website-->
+              {{/SCU_website--hip}}
+              {{#SCU_cricos--hip}}
+              <div class="cricos__container">
+                <div class="cricos" data-max-line="1">{{account.snippets.cricos}}  |  {{#metadata}}OF_{{export_id}}{{/metadata}}{{^metadata}}OF_XXXXXX{{/metadata}}</div> <!--cricos--->
+              </div><!-- cricos__container -->
+              {{/SCU_cricos--hip}}
+            </div><!-- footer__inner -->
+          </div><!-- footer -->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/custom-rich-text.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      {{ #placeholder-toggle-new }}document.body.classList.add("u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}"); {{ /placeholder-toggle-new }}
+      {{ #placeholder-validation }}document.body.classList.add("placeholder__validation--{{placeholder-validation}}"){{ /placeholder-validation }}
+    </script>
+    <script>
+
+      console.clear();
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>

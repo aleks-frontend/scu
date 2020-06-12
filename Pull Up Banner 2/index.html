@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      :root {
+
+        --blue: {{{account.colors.primary}}};
+        --black: #000;
+      }
+
+      html {
+        font-family: "Graphik";
+        font-size: 11pt;
+        color: var(--black);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        height: 1079pt;
+        text-align: center;
+      }
+
+      .logo {
+        height: 638pt;
+        margin-top: 292pt;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .body {
+        position: relative;
+        flex: 1;
+        text-align: center;
+        padding: 70pt 150pt 0;
+      }
+
+      .heading {
+        position: relative;
+        font-weight: 600;
+        line-height: 1;
+        font-size: 443pt;
+        color: var(--blue);
+      }
+
+      .heading h1{
+        font-weight: 500;
+        line-height: 1;
+      }
+
+
+      .footer {
+        position: relative;
+        height: 1846pt;
+        padding: 76pt 1017pt 0pt 225pt;
+      }
+
+      .url {
+        font-size: 90.2pt;
+        font-weight: bold;
+        line-height: 1;
+        color: var(--blue);
+        margin-bottom: 98pt;
+      }
+
+      .cricos {
+        line-height: 1;
+        font-size: 46.2pt;
+      }
+
+      .graphic {
+        position: absolute;
+        height: 2569pt;
+        bottom: 684pt;
+        right: 0;
+        mix-blend-mode: multiply;
+      }
+
+      .graphic--hide {
+        display: none; 
+      }
+
+      /* Because of the Bleed size change, we must manually change the positioning of the placeholder */
+      .placeholder__container {
+        top: 30mm;
+        left: 5mm;
+        right: 5mm;
+        bottom: 200mm;
+      }      
+
+      /* Custom Crop Marks styling */     
+      .cropMark::before,
+      .cropMark::after {
+        content: '';
+        position: absolute;        
+        background: gray;
+      }
+
+      .cropMark::before { 
+        width: 30px; 
+        height: 5px;
+      }
+
+      .cropMark::after { 
+        height: 30px; 
+        width: 5px;
+      }
+
+      .cropMark--top::before { bottom: 0; }
+      .cropMark--bottom::before { top: 0; }
+
+      .cropMark--top::after { top: 0; }
+      .cropMark--bottom::after { bottom: 0; }      
+
+      .cropMark--left::before { left: 0; }
+      .cropMark--right::before { right: 0; }
+
+      .cropMark--left::after { right: 0; }
+      .cropMark--right::after { left: 0; }      
+
+      {{{account.snippets.font}}}
+
+      .heading h1 {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <img class="logo" src="{{{SCU_logo--pub2}}}" />
+          </div> <!--header-->
+
+          <div class="body">
+            <div class="backgroundImage">
+
+              <!--  <div class="reposition-fix">{{{SCU_background-image--pub2}}}</div>  -->
+
+            </div> <!--backgroundImage-->
+            <div class="heading" data-max-line="2">{{{SCU_heading--pub2}}}</div> <!---->
+          </div> <!--body-->
+
+          <div class="footer">
+            <div class="url" data-max-line="1">scu.edu.au{{ #SCU_url--pub2 }}/{{{SCU_url--pub2}}} {{ /SCU_url--pub2 }}</div> 
+
+            <div class="cricos">CRICOS Provider: 02141G</div> 
+          </div> <!--footer-->
+
+          <!-- <img class="graphic graphic--{{^SCU_background-visibilty--pub2}}show{{/SCU_background-visibilty--pub2}}{{SCU_background-visibilty--pub2}}" src="https://files.outfit.io/media_library_items/94329/Graphic-Visibility.png" /> -->
+
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>

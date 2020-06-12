@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />    
+  </head>
+  <style>
+    {{{account.snippets.font}}}
+    
+    h1, .table-heading {
+      font-family: var(--headingFont) !important;
+      font-weight: var(--headingWeight) !important;
+    }
+  </style>
+  <body data-team="{{{team.name}}}" data-logo="">
+
+
+    {{#collection.scu-booklet-pages}}
+
+
+    {{#block.scu-booklet-page-9}}
+    <div class="page page-2 page-type-9 page-inner">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="wrapper fit">
+          <div class="content box-inner full-size">
+            <div class="top box-inner full-width">
+              <div class="heading text-overflow">
+                <div class="inner">
+                  <h1>Credit for vocational qualification</h1>
+                  <div class="hero-image image-container">
+                    {{{partner-logo}}}
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <div class="bottom box-inner full-width">                  
+              <div class="copy box-inner text-overflow">
+                <div class="inner multi-columns">
+                  {{#collection.scu-tables}}
+                  <div class="table-block">
+                    <div class="table-heading light-gray">{{{table-heading}}}</div>
+                    <table style="width: 700px;">
+                      {{#spreadsheet.scu-table}}
+                      <tr class="{{#is-heading}}heading{{/is-heading}}">      
+                        {{#col-1}}<td>{{{col-1}}}</td>{{/col-1}}
+                        {{#col-2}}<td>{{{col-2}}}</td>{{/col-2}}
+                        {{#col-3}}<td>{{{col-3}}}</td>{{/col-3}}
+                      </tr>
+                      {{/spreadsheet.scu-table}}
+                    </table>
+
+                  </div>
+                  {{/collection.scu-tables}}
+                  <div class="wrapper">
+                    <div class="main">              
+                      <div style="margin-top: 24pt; height: 60pt;">
+                        <img style="height: 100%;" src="{{{lockup-logo}}}">
+                      </div>
+                      <div class="website">scu.edu.au</div>
+                      <div class="socials">
+                        <a class="facebook"><img src="facebook.svg" /></a>
+                        <a class="twitter"><img src="twitter.svg" /></a>
+                        <a class="instagram"><img src="instagram.svg" /></a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/block.scu-booklet-page-9}}   
+
+    {{/collection.scu-booklet-pages}}
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed) {
+        bleed.style.cssText = !!window.showCrop 
+          ? 'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        : 'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm';
+      }); 
+
+      function checkHeight() {
+        $('.text-overflow')
+          .each(function() {
+          const e = $(this);
+          const height = e.find('.inner').height();      
+          const parentHeight = e.height() + 2;
+
+          if (height > parentHeight) {
+            e.addClass('overflow');
+          } else {
+            e.removeClass('overflow');
+          }
+        });        
+      }
+
+      function loop() {
+        checkHeight();
+      } setInterval(loop, 1000);
+    </script>
+  </body>
+</html>

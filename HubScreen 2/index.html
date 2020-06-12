@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Graphik/stylesheet.css');
+
+      :root {
+        --black: #000;
+      }
+
+      html {
+        font-family: "Graphik";
+        font-size: 11pt;
+        color: var(black);
+        word-break: break-word;
+      }
+
+      strong {
+        font-weight: 500;
+      }
+
+      h1 {
+        margin-bottom: 34.4pt;
+        font-size: 58pt;
+        line-height: 1.2em;
+        font-weight: 500;
+
+      }
+
+      h2 {
+        margin-top: -13pt;
+        font-size: 48pt;
+        font-weight: 400;
+        line-height: 1.2em;
+      }
+
+      p {
+        margin-bottom: 5pt;
+        font-size: 36pt;
+        font-weight: 400;
+        line-height: 1.2em;
+      }
+
+      h1:last-child,
+      h2:last-child,
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }    
+
+      .container {
+        display: flex;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 21pt 50pt 33pt 78pt;
+      }
+
+      .header {
+        display: flex;
+        justify-content: flex-start;
+        height: 145pt;
+        position: relative;
+      }
+
+      .logo {
+        position: absolute;
+        /* height: 100%; */
+        width: 100%;
+        object-fit: contain;
+      }
+
+      .body {
+        position: relative;
+        flex: 1;
+        margin-top: 7.7pt;
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        height: 76.4pt;
+      }
+
+      .url {
+        font-size: 21.7pt;
+        font-weight: 400;
+        line-height: 1.2em;
+      }
+
+      .cricos {
+        margin-top: 10pt;
+        font-size: 14.9pt;
+        line-height: 1.2em;
+      }
+
+      .side {
+        position: relative;
+        width: 687pt;
+      }
+
+      .featureImage {
+        overflow: hidden;
+      }
+
+      {{{account.snippets.font}}}
+
+      h1 {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="main">
+            {{#SCU_lockup-logo--hs2}}
+            <div class="header">
+              <img class="logo" src="{{{SCU_lockup-logo--hs2}}}">
+            </div><!--header-->
+            {{/SCU_lockup-logo--hs2}}
+            <div class="body">
+              <div data-max-height="dynamic">
+                {{{SCU_copy--hs2}}}
+              </div>
+            </div><!--body-->
+            <div class="footer">
+              {{#SCU_url--hs2}}
+              <div class="url" data-max-line="1">{{{SCU_url--hs2}}}</div><!--url-->
+              {{/SCU_url--hs2}}
+              <div class="cricos">CRICOS provider: 01241G</div><!--cricos-->
+            </div><!--footer-->
+          </div><!--main-->
+          <div class="side">
+            <div class="featureImage"><div class="reposition-fix">{{{SCU_feature-image--hs2}}}</div></div><!--featureImage-->
+          </div><!--side-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>

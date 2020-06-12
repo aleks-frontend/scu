@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">      
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/62c80324c2546e5ab75ba9f55a4b066e/Capture2.JPG');
+        opacity: 0.5;        
+      }
+
+      .crop .test {
+        margin: 3mm;
+      }
+
+      {{{account.snippets.font}}}
+
+      h1, h2 {
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+    </style>
+  </head>
+  <body class="{{ arrowPosition }}{{ ^arrowPosition }}left{{ /arrowPosition }}" data-team="{{{team.name}}}" data-logo="">
+
+    <div class="page">
+      <div class="bleed">
+        <div class="test contain"></div>
+        <div class="background fit"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="main">
+              {{#headline}}<h1 class="headline text-limited">{{{ headline }}}</h1>{{/headline}}
+              {{#subHeading}}<h2 class="subHeading text-limited">This way to {{{ subHeading }}}</h2>{{/subHeading}}
+            </div>
+            <div class="foot">
+              <div style="margin-top: 0; height: 118pt;">
+                <img style="height: 100%;" src="{{{lockup-logo}}}">
+              </div>              
+              {{#url}}<h3 class="url text-limited">{{{ url }}}</h3>{{/url}}
+              <div class="code">CRICOS Provider: 01241G</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{showCrop}}{{^showCrop}}false{{/showCrop}};
+
+                                                        if (showCrop) {
+                                                          document.querySelector('body').classList.add('crop');
+                                                        }
+
+                                                        var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+                                                          .forEach(function(page) {
+                                                          var parser = new DOMParser();
+                                                          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+                                                          var cropString = (
+                                                            '<div class="crop-marks">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '</div>'
+                                                          )
+
+                                                          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+                                                          !!window.showCrop && page.insertBefore(cropNode, null);
+                                                        }
+                                                                  );
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+                                                          .forEach(function(bleed){
+                                                          bleed.style.cssText = !!window.showCrop ?
+                                                            'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+                                                          :
+                                                          'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+                                                        });                                                   
+
+    </script>
+    <script>
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-limited'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedText, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..        
+      });
+    </script>
+  </body>
+</html>

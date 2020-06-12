@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">      
+      .front .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b3b6325a06f7fd58e27ffe68a1adb041/Screenshot-2018-5-17%20SCUBG180205%20-%20Course%20Flyer_v2%20pdf.png');
+        opacity: 0.5;
+        z-index: 9;
+      }
+      .back .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/cd7df60db7403a13b22118a938eca598/Screen%20Shot%202018-05-18%20at%201.14.55%20PM.png');
+        opacity: 0.5;
+        z-index: 9;
+      }
+
+      .pullOutCopy {
+        margin: 0 0 10pt;
+      }
+
+      {{{account.snippets.font}}}
+
+      h1,h2, h3{
+        font-family: var(--headingFont);
+        font-weight: var(--headingWeight);
+      }
+      
+      .headlines {
+        margin-top: 170px;
+      }
+    </style>
+  </head>
+  <body data-team="{{{team.name}}}" data-logo="">
+
+    <div class="page front">
+      <div class="bleed">
+        <div class="test contain"></div>
+        <div class="fit">
+          <div class="graphic contain"></div>
+          <div class="wrapper">
+            <div class="head">
+              <div style="position: absolute; top: 0; left: 0; height: 200px;">
+                <img style="height: 100%;" src="https://files.outfit.io/media_library_items/171020/SCU_RGB_Vertical.png">
+              </div>
+              <div class="headlines">
+                {{#headline}}<h1 class="headline text-blue">{{{ headline }}}</h1>{{/headline}}
+                {{#subHeading}}<h2 class="subHeading text-blue">{{{ subHeading }}}</h2>{{/subHeading}}
+              </div>
+            </div>
+            <div class="hero">
+              <div class="heroImage fit">
+                {{{ heroImage }}}
+              </div>              
+              <div class="heroContent text-limited {{show-hero-content}}">
+                {{#heroHeading}}<h2 class="heroHeading">{{{ heroHeading }}}</h2>{{/heroHeading}}
+                <ul class="heroPoints">
+                  {{#spreadsheet.heroPoints}}
+                  <li>{{{ text }}}</li>
+                  {{/spreadsheet.heroPoints}}
+                </ul>
+              </div>
+            </div>
+            <div class="main">
+              {{#heading}}<h2 class="heading text-blue text-limited">{{{ heading }}}</h2>{{/heading}}
+              {{#frontPageCopy}}<div class="frontPageCopy text-limited">{{{ frontPageCopy }}}</div>{{/frontPageCopy}}
+              <div class="foot">
+                {{#url}}<h3 class="url"><strong>{{{ url }}}</strong></h3>{{/url}}
+                <p class="code"><small>CRICOS Provider: 01241G</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page back">
+      <div class="bleed">
+        <div class="test contain"></div>
+        <div class="fit">          
+          <div class="wrapper">
+            <div class="backPageCopy boxOverflow">
+              <div class="boxInner">
+                {{#backPageCopy}}{{{ backPageCopy }}}{{/backPageCopy}}
+                {{#pullOutCopy}}<div class="pullOutCopy">{{{ pullOutCopy }}}</div>{{/pullOutCopy}}
+                {{#footerCopy}}{{{ footerCopy }}}{{/footerCopy}}
+              </div>
+            </div>
+            <div class="foot">
+              <p class="disclaimer text-limited"  id="disclaimer">
+                This brochure is a guide to Southern Cross University and studies offered by the University. The information set out in this brochure is an expression of intent only and should not be taken as a firm offer or undertaking. The information contained in the brochure is correct at time of printing and the University reserves the right to make alterations to any information contained within this publication without notice. Copyright Southern Cross University <span data-project-code></span>
+              </p>
+            </div>
+          </div>
+          <div class="graphic contain"></div>
+        </div>
+      </div>
+    </div>
+	<script>
+      // Check if current browser is Firefox
+
+		function firefoxCheck() {
+  			if ( navigator.userAgent.includes('Firefox') ) document.body.classList.add('is-firefox');
+		}
+
+		firefoxCheck();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{showCrop}}{{^showCrop}}false{{/showCrop}};
+
+                                                        if (showCrop) {
+                                                          document.querySelector('body').classList.add('crop');
+                                                        }
+
+                                                        var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+                                                          .forEach(function(page) {
+                                                          var parser = new DOMParser();
+                                                          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+                                                          var cropString = (
+                                                            '<div class="crop-marks">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+                                                            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+                                                            '</div>'
+                                                          )
+
+                                                          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+                                                          !!window.showCrop && page.insertBefore(cropNode, null);
+                                                        }
+                                                                  );
+
+                                                        Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+                                                          .forEach(function(bleed){
+                                                          bleed.style.cssText = !!window.showCrop ?
+                                                            'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+                                                          :
+                                                          'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+                                                        });
+
+    </script>
+    <script>
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-limited'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedText, 1000);
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.boxOverflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height() + 2;
+          const height = $(e).children('.boxInner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      } setInterval(checkLimitedBox, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..      
+      });
+    </script>
+    <script>
+      document.querySelector('#disclaimer').style.display = '{{{ show-disclaimer }}}' === 'true' ? 'block' : 'none';
+    </script>
+    <script src="https://rawgit.com/Outfitio/template-utils/master/src/projectCode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data.min.js"></script>
+    <script>
+      window.setProjectCode('[DATE]', 'MMMM YYYY');
+    </script>
+
+
+  </body>
+</html>
